@@ -1,102 +1,788 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { ArrowDownRight, ArrowRight, ChevronDown, Wheat, Menu, X, Leaf, Sprout, HandHeart, MessageCircle, MapPin, MoveUpRight } from 'lucide-react';
+import Image from "next/image";
+import { useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import {
+  ArrowDownRight,
+  ArrowRight,
+  ChevronDown,
+  Wheat,
+  Menu,
+  X,
+  Leaf,
+  Sprout,
+  HandHeart,
+  MessageCircle,
+  MapPin,
+  MoveUpRight,
+} from "lucide-react";
 
 const products = [
-  { id: 'sarvati', number: '01', name: 'MP Sharbati Atta', tagline: 'A familiar favourite', description: 'A versatile everyday atta for soft rotis and the comfort of home-cooked meals.', image: '/images/mp-sarvati-atta.webp', alt: 'Suvidha MP Sharbati Atta product pack and flour bowl', tone: 'sand', note: 'EVERYDAY ESSENTIAL' },
-  { id: 'multigrain', number: '02', name: 'Multigrain Atta', tagline: 'A little more variety', description: 'A thoughtful blend inspired by the goodness of different grains for everyday meals.', image: '/images/multigrain-atta.webp', alt: 'Suvidha Multigrain Atta product pack with assorted grains', tone: 'sage', note: 'GRAIN BLEND' },
-  { id: 'khapli', number: '03', name: 'Khapli Wheat Atta', tagline: 'Rooted in tradition', description: 'A traditional wheat variety for people who love exploring distinctive grains and flavours.', image: '/images/khapli-wheat-atta.webp', alt: 'Suvidha Khapli Atta product pack with flour and wheat grains', tone: 'gold', note: 'TRADITIONAL GRAIN' },
-  { id: 'millet', number: '04', name: 'Millets Atta', tagline: 'Inspired by ancient grains', description: 'A grain-led choice for adding millet variety to your everyday kitchen.', image: '/images/millet-atta.webp', alt: 'Suvidha Millets Atta product pack and grain ingredients', tone: 'rose', note: 'ANCIENT GRAINS' },
+  {
+    id: "sarvati",
+    number: "01",
+    name: "MP Sharbati Atta",
+    tagline: "A familiar favourite",
+    description:
+      "A versatile everyday atta for soft rotis and the comfort of home-cooked meals.",
+    image: "/images/mp-sarvati-atta.webp",
+    alt: "Suvidha MP Sharbati Atta product pack and flour bowl",
+    tone: "sand",
+    note: "EVERYDAY ESSENTIAL",
+  },
+  {
+    id: "multigrain",
+    number: "02",
+    name: "Multigrain Atta",
+    tagline: "A little more variety",
+    description:
+      "A thoughtful blend inspired by the goodness of different grains for everyday meals.",
+    image: "/images/multigrain-atta.webp",
+    alt: "Suvidha Multigrain Atta product pack with assorted grains",
+    tone: "sage",
+    note: "GRAIN BLEND",
+  },
+  {
+    id: "khapli",
+    number: "03",
+    name: "Khapli Wheat Atta",
+    tagline: "Rooted in tradition",
+    description:
+      "A traditional wheat variety for people who love exploring distinctive grains and flavours.",
+    image: "/images/khapli-wheat-atta.webp",
+    alt: "Suvidha Khapli Atta product pack with flour and wheat grains",
+    tone: "gold",
+    note: "TRADITIONAL GRAIN",
+  },
+  {
+    id: "millet",
+    number: "04",
+    name: "Millets Atta",
+    tagline: "Inspired by ancient grains",
+    description:
+      "A grain-led choice for adding millet variety to your everyday kitchen.",
+    image: "/images/millet-atta.webp",
+    alt: "Suvidha Millets Atta product pack and grain ingredients",
+    tone: "rose",
+    note: "ANCIENT GRAINS",
+  },
 ];
 const faqs = [
-  { q: 'Which atta varieties are available?', a: 'Suvidha Atta Chakki currently showcases MP Sharbati Atta, Multigrain Atta, Khapli Wheat Atta and Millets Atta. Contact us to confirm availability and pack sizes.' },
-  { q: 'Can I enquire about bulk or wholesale orders?', a: 'Yes. Use the enquiry form and choose “Wholesale / bulk order”. Share your quantity and location so the team can follow up with the right details.' },
-  { q: 'How can I check pack sizes and pricing?', a: 'Pack sizes and prices can vary. Send us an enquiry for current availability, pricing and delivery details.' },
+  {
+    q: "Which atta varieties are available?",
+    a: "Suvidha Atta Chakki currently showcases MP Sharbati Atta, Multigrain Atta, Khapli Wheat Atta and Millets Atta. Contact us to confirm availability and pack sizes.",
+  },
+  {
+    q: "Can I enquire about bulk or wholesale orders?",
+    a: "Yes. Use the enquiry form and choose “Wholesale / bulk order”. Share your quantity and location so the team can follow up with the right details.",
+  },
+  {
+    q: "How can I check pack sizes and pricing?",
+    a: "Pack sizes and prices can vary. Send us an enquiry for current availability, pricing and delivery details.",
+  },
 ];
 
-function Reveal({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
+function Reveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
   const reduce = useReducedMotion();
-  return <motion.div className={className} initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: reduce ? 0 : 0.7, delay, ease: [0.22, 1, 0.36, 1] }}>{children}</motion.div>;
+  return (
+    <motion.div
+      className={className}
+      initial={reduce ? false : { opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{
+        duration: reduce ? 0 : 0.7,
+        delay,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+    >
+      {children}
+    </motion.div>
+  );
 }
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [faqOpen, setFaqOpen] = useState<number | null>(0);
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ name: '', phone: '', interest: 'Product enquiry', message: '' });
-  const whatsappNumber = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919319191305').replace(/\D/g, '');
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    interest: "Product enquiry",
+    message: "",
+  });
+  const whatsappNumber = (
+    process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919319191305"
+  ).replace(/\D/g, "");
 
   function submitEnquiry(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const text = `Hello Suvidha Atta Chakki,\n\nI'd like to make an enquiry.\nName: ${form.name}\nPhone: ${form.phone}\nEnquiry type: ${form.interest}\nDetails: ${form.message || 'Please share product availability and pricing.'}`;
-    if (!whatsappNumber) { setSubmitted(true); return; }
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+    const text = `Hello Suvidha Atta Chakki,\n\nI'd like to make an enquiry.\nName: ${
+      form.name
+    }\nPhone: ${form.phone}\nEnquiry type: ${form.interest}\nDetails: ${
+      form.message || "Please share product availability and pricing."
+    }`;
+    if (!whatsappNumber) {
+      setSubmitted(true);
+      return;
+    }
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
     setSubmitted(true);
   }
 
-  
   const closeMenu = () => setMenuOpen(false);
   return (
     <main>
-      <div className="announcement"><span className="announcement-dot" /> GOODNESS IN EVERY GRAIN <span className="announcement-divider">✳</span> MADE FOR YOUR EVERYDAY TABLE</div>
+      <div className="announcement">
+        <span className="announcement-dot" /> GOODNESS IN EVERY GRAIN{" "}
+        <span className="announcement-divider">✳</span> MADE FOR YOUR EVERYDAY
+        TABLE
+      </div>
       <header className="site-header">
         <a className="brand" href="#home" aria-label="Suvidha Atta Chakki home">
-          <Image className="brand-logo" src="/images/suvidha-brand-logo.png" alt="Suvidha Atta Chakki logo" width={76} height={65} priority />
+          <Image
+            className="brand-logo"
+            src="/images/suvidha-brand-logo.png"
+            alt="Suvidha Atta Chakki logo"
+            width={76}
+            height={65}
+            priority
+          />
         </a>
-        <nav className={`desktop-nav ${menuOpen ? 'nav-open' : ''}`} aria-label="Main navigation">
-          <a href="#products" onClick={closeMenu}>Our Atta</a><a href="#story" onClick={closeMenu}>Our Story</a><a href="#process" onClick={closeMenu}>Our Approach</a><a href="#faq" onClick={closeMenu}>FAQs</a>
-          <a className="nav-cta" href="#contact" onClick={closeMenu}>Make an enquiry <ArrowUpRightIcon /></a>
+        <nav
+          className={`desktop-nav ${menuOpen ? "nav-open" : ""}`}
+          aria-label="Main navigation"
+        >
+          <a href="#products" onClick={closeMenu}>
+            Our Atta
+          </a>
+          <a href="#story" onClick={closeMenu}>
+            Our Story
+          </a>
+          <a href="#process" onClick={closeMenu}>
+            Our Approach
+          </a>
+          <a href="#faq" onClick={closeMenu}>
+            FAQs
+          </a>
+          <a className="nav-cta" href="#contact" onClick={closeMenu}>
+            Make an enquiry <ArrowUpRightIcon />
+          </a>
         </nav>
-        <button className="mobile-toggle" aria-label={menuOpen ? 'Close menu' : 'Open menu'} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button>
+        <button
+          className="mobile-toggle"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <X /> : <Menu />}
+        </button>
       </header>
 
       <section className="hero" id="home">
         <div className="hero-copy">
-          <motion.div className="eyebrow" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .55 }}><span className="eyebrow-line" /> FROM OUR GRAINS TO YOUR HOME</motion.div>
-          <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .75, delay: .08, ease: [.22, 1, .36, 1] }}>A little more<br />goodness in <em>every</em><br /><span>roti.</span></motion.h1>
-          <motion.p className="hero-description" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .65, delay: .22 }}>Everyday meals begin with the ingredients we choose. Discover atta varieties from Suvidha Atta Chakki, a family-focused brand serving quality since 2026.</motion.p>
-          <motion.div className="hero-actions" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .34 }}><a className="button button-dark" href="#products">Explore our atta <ArrowRight size={17} /></a><a className="text-link" href="#story">Get to know us <ArrowDownRight size={17} /></a></motion.div>
-          <div className="hero-footnote"><span className="footnote-icon"><Sprout size={19} /></span><span>SERVING QUALITY<br /><b>SINCE 2026</b></span><span className="footnote-rule" /><span className="footnote-small">A thoughtful choice<br />for everyday cooking.</span></div>
+          <motion.div
+            className="eyebrow"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+          >
+            <span className="eyebrow-line" /> FROM OUR GRAINS TO YOUR HOME
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.75,
+              delay: 0.08,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            A little more
+            <br />
+            goodness in <em>every</em>
+            <br />
+            <span>roti.</span>
+          </motion.h1>
+          <motion.p
+            className="hero-description"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.22 }}
+          >
+            Everyday meals begin with the ingredients we choose. Discover atta
+            varieties from Suvidha Atta Chakki, a family-focused brand serving
+            quality since 2014.
+          </motion.p>
+          <motion.div
+            className="hero-actions"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.34 }}
+          >
+            <a className="button button-dark" href="#products">
+              Explore our atta <ArrowRight size={17} />
+            </a>
+            <a className="text-link" href="#story">
+              Get to know us <ArrowDownRight size={17} />
+            </a>
+          </motion.div>
+          <div className="hero-footnote">
+            <span className="footnote-icon">
+              <Sprout size={19} />
+            </span>
+            <span>
+              SERVING QUALITY
+              <br />
+              <b>SINCE 2014</b>
+            </span>
+            <span className="footnote-rule" />
+            <span className="footnote-small">
+              A thoughtful choice
+              <br />
+              for everyday cooking.
+            </span>
+          </div>
         </div>
         <div className="hero-visual">
-          <div className="hero-image-main"><Image src="/images/storefront.webp" alt="Suvidha Atta Chakki retail storefront and flour products" fill priority sizes="(max-width: 760px) 100vw, 54vw" /></div>
-          <div className="hero-image-overlay"><Image src="/images/mp-sarvati-atta.webp" alt="Suvidha MP Sarvati Atta product packaging" fill sizes="200px" /></div>
-          <div className="hero-stamp"><span>ROOTED IN</span><Wheat size={22} strokeWidth={1.4} /><span>GOODNESS</span><span className="stamp-stars">✳ ✳ ✳</span></div>
+          <div className="hero-image-main">
+            <Image
+              src="/images/storefront.webp"
+              alt="Suvidha Atta Chakki retail storefront and flour products"
+              fill
+              priority
+              sizes="(max-width: 760px) 100vw, 54vw"
+            />
+          </div>
+          <div className="hero-image-overlay">
+            <Image
+              src="/images/mp-sarvati-atta.webp"
+              alt="Suvidha MP Sarvati Atta product packaging"
+              fill
+              sizes="200px"
+            />
+          </div>
+          <div className="hero-stamp">
+            <span>ROOTED IN</span>
+            <Wheat size={22} strokeWidth={1.4} />
+            <span>GOODNESS</span>
+            <span className="stamp-stars">✳ ✳ ✳</span>
+          </div>
           <div className="hero-vertical">A GOOD DAY BEGINS AT THE TABLE</div>
-          <div className="hero-image-caption"><span>THE EVERYDAY GRAIN</span><span>01 / 04</span></div>
+          <div className="hero-image-caption">
+            <span>THE EVERYDAY GRAIN</span>
+            <span>01 / 04</span>
+          </div>
         </div>
-        <a className="scroll-cue" href="#products"><span>SCROLL TO DISCOVER</span><span className="scroll-line" /></a>
+        <a className="scroll-cue" href="#products">
+          <span>SCROLL TO DISCOVER</span>
+          <span className="scroll-line" />
+        </a>
       </section>
 
-      <section className="ticker" aria-label="Our philosophy"><div className="ticker-track">{Array.from({ length: 4 }).map((_, i) => <span key={i}>GOOD GRAINS <b>✳</b> EVERYDAY GOODNESS <b>✳</b> MADE FOR HOME <b>✳</b> SUVIDHA ATTA CHAKKI <b>✳</b></span>)}</div></section>
+      <section className="ticker" aria-label="Our philosophy">
+        <div className="ticker-track">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <span key={i}>
+              GOOD GRAINS <b>✳</b> EVERYDAY GOODNESS <b>✳</b> MADE FOR HOME{" "}
+              <b>✳</b> SUVIDHA ATTA CHAKKI <b>✳</b>
+            </span>
+          ))}
+        </div>
+      </section>
 
       <section className="products section-pad" id="products">
-        <Reveal><div className="section-heading"><div><div className="eyebrow"><span className="eyebrow-line" /> FIND YOUR EVERYDAY FAVOURITE</div><h2>Good grains.<br /><em>Different</em> ways to enjoy.</h2></div><div className="heading-side"><p>From the familiar softness of everyday atta to the character of traditional grains, find the variety that feels right for your kitchen.</p><a href="#contact" className="text-link">Ask about our products <ArrowRight size={16} /></a></div></div></Reveal>
-        <div className="product-grid">{products.map((p, i) => <Reveal key={p.id} delay={i * .08} className={`product-card product-${p.tone}`}><a className="product-image" href={`#contact`} aria-label={`Enquire about ${p.name}`}><Image src={p.image} alt={p.alt} fill sizes="(max-width: 650px) 100vw, (max-width: 1000px) 50vw, 25vw" /><span className="product-number">{p.number} / 04</span><span className="product-arrow"><ArrowUpRightIcon /></span><span className="product-image-label">{p.note}</span></a><div className="product-details"><div className="product-tagline">{p.tagline}</div><h3>{p.name}</h3><p>{p.description}</p><a href="#contact" className="product-link" onClick={() => setForm((prev) => ({ ...prev, interest: `Enquiry about ${p.name}` }))}>Enquire about this atta <ArrowRight size={15} /></a></div></Reveal>)}</div>
-        <div className="product-bottom-note"><span className="note-star">✳</span><span>Also ask us about besan, suji, dalia, rice, spices, oils and pulses.</span><a href="#contact">Ask about our full range <ArrowRight size={15} /></a></div>
+        <Reveal>
+          <div className="section-heading">
+            <div>
+              <div className="eyebrow">
+                <span className="eyebrow-line" /> FIND YOUR EVERYDAY FAVOURITE
+              </div>
+              <h2>
+                Good grains.
+                <br />
+                <em>Different</em> ways to enjoy.
+              </h2>
+            </div>
+            <div className="heading-side">
+              <p>
+                From the familiar softness of everyday atta to the character of
+                traditional grains, find the variety that feels right for your
+                kitchen.
+              </p>
+              <a href="#contact" className="text-link">
+                Ask about our products <ArrowRight size={16} />
+              </a>
+            </div>
+          </div>
+        </Reveal>
+        <div className="product-grid">
+          {products.map((p, i) => (
+            <Reveal
+              key={p.id}
+              delay={i * 0.08}
+              className={`product-card product-${p.tone}`}
+            >
+              <a
+                className="product-image"
+                href={`#contact`}
+                aria-label={`Enquire about ${p.name}`}
+              >
+                <Image
+                  src={p.image}
+                  alt={p.alt}
+                  fill
+                  sizes="(max-width: 650px) 100vw, (max-width: 1000px) 50vw, 25vw"
+                />
+                <span className="product-number">{p.number} / 04</span>
+                <span className="product-arrow">
+                  <ArrowUpRightIcon />
+                </span>
+                <span className="product-image-label">{p.note}</span>
+              </a>
+              <div className="product-details">
+                <div className="product-tagline">{p.tagline}</div>
+                <h3>{p.name}</h3>
+                <p>{p.description}</p>
+                <a
+                  href="#contact"
+                  className="product-link"
+                  onClick={() =>
+                    setForm((prev) => ({
+                      ...prev,
+                      interest: `Enquiry about ${p.name}`,
+                    }))
+                  }
+                >
+                  Enquire about this atta <ArrowRight size={15} />
+                </a>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <div className="product-bottom-note">
+          <span className="note-star">✳</span>
+          <span>
+            Also ask us about besan, suji, dalia, rice, spices, oils and pulses.
+          </span>
+          <a href="#contact">
+            Ask about our full range <ArrowRight size={15} />
+          </a>
+        </div>
       </section>
 
       <section className="story" id="story">
-        <div className="story-photo"><Image src="/images/brand-story.webp" alt="Suvidha Atta Chakki store, milling equipment and product range" fill sizes="(max-width: 760px) 100vw, 50vw" /><div className="story-photo-label"><span>THE SIMPLE THINGS</span><span>MATTER MOST.</span></div><div className="story-photo-seal"><Wheat size={27} /><span>SUVIDHA</span><small>ATTA CHAKKI</small></div></div>
-        <div className="story-copy"><Reveal><div className="eyebrow eyebrow-light"><span className="eyebrow-line" /> SERVING QUALITY SINCE 2026</div><h2>Some things are<br />simple. <em>And that’s</em><br /><span>their beauty.</span></h2><p>There’s something special about the everyday meal. The dough kneaded by hand, the roti shared hot, the familiar taste of home. At Suvidha Atta Chakki, a brand from Aas Food Products, we believe the ingredients behind those moments deserve care and attention. We have been serving customers since 2026.</p><p>Our range includes MP Sharbati Atta, Multigrain Atta, Khapli Atta and Millet Flour, along with other flour, grain and kitchen essentials. Home delivery is advertised by the business; contact us to confirm delivery availability for your location and ask about current pack sizes.</p><a href="#contact" className="button button-gold">Let’s talk <ArrowRight size={17} /></a><div className="story-signoff"><span className="signoff-line" /><span>SUVIDHA ATTA CHAKKI</span><span className="signoff-leaf"><Leaf size={18} /></span></div></Reveal></div>
+        <div className="story-photo">
+          <Image
+            src="/images/brand-story.webp"
+            alt="Suvidha Atta Chakki store, milling equipment and product range"
+            fill
+            sizes="(max-width: 760px) 100vw, 50vw"
+          />
+          <div className="story-photo-label">
+            <span>THE SIMPLE THINGS</span>
+            <span>MATTER MOST.</span>
+          </div>
+          <div className="story-photo-seal">
+            <Wheat size={27} />
+            <span>SUVIDHA</span>
+            <small>ATTA CHAKKI</small>
+          </div>
+        </div>
+        <div className="story-copy">
+          <Reveal>
+            <div className="eyebrow eyebrow-light">
+              <span className="eyebrow-line" /> SERVING QUALITY SINCE 2014
+            </div>
+            <h2>
+              Some things are
+              <br />
+              simple. <em>And that’s</em>
+              <br />
+              <span>their beauty.</span>
+            </h2>
+            <p>
+              There’s something special about the everyday meal. The dough
+              kneaded by hand, the roti shared hot, the familiar taste of home.
+              At Suvidha Atta Chakki, a brand from Aas Food Products, we believe
+              the ingredients behind those moments deserve care and attention.
+              We have been serving customers since 2014.
+            </p>
+            <p>
+              Our range includes MP Sharbati Atta, Multigrain Atta, Khapli Atta
+              and Millet Flour, along with other flour, grain and kitchen
+              essentials. Home delivery is advertised by the business; contact
+              us to confirm delivery availability for your location and ask
+              about current pack sizes.
+            </p>
+            <a href="#contact" className="button button-gold">
+              Let’s talk <ArrowRight size={17} />
+            </a>
+            <div className="story-signoff">
+              <span className="signoff-line" />
+              <span>SUVIDHA ATTA CHAKKI</span>
+              <span className="signoff-leaf">
+                <Leaf size={18} />
+              </span>
+            </div>
+          </Reveal>
+        </div>
       </section>
 
-      <section className="approach section-pad" id="process"><Reveal><div className="approach-intro"><div className="eyebrow"><span className="eyebrow-line" /> OUR EVERYDAY PROMISE</div><h2>Goodness is in<br /><em>the details.</em></h2><p>A good kitchen is built on choices that feel right. Here are a few things we keep at the heart of the Suvidha experience.</p></div></Reveal><div className="approach-grid"><Reveal delay={.08}><div className="approach-item"><span className="approach-icon"><Wheat size={25} strokeWidth={1.4} /></span><span className="approach-no">01</span><h3>Grain variety</h3><p>Explore familiar favourites and traditional grain options for the way your family likes to eat.</p></div></Reveal><Reveal delay={.16}><div className="approach-item"><span className="approach-icon"><HandHeart size={25} strokeWidth={1.4} /></span><span className="approach-no">02</span><h3>Made for everyday</h3><p>Atta belongs in the everyday rhythm of home cooking, from morning rotis to shared dinners.</p></div></Reveal><Reveal delay={.24}><div className="approach-item"><span className="approach-icon"><Leaf size={25} strokeWidth={1.4} /></span><span className="approach-no">03</span><h3>Choice with care</h3><p>Clear product information helps you choose the atta variety that suits your kitchen and preferences.</p></div></Reveal></div></section>
+      <section className="approach section-pad" id="process">
+        <Reveal>
+          <div className="approach-intro">
+            <div className="eyebrow">
+              <span className="eyebrow-line" /> OUR EVERYDAY PROMISE
+            </div>
+            <h2>
+              Goodness is in
+              <br />
+              <em>the details.</em>
+            </h2>
+            <p>
+              A good kitchen is built on choices that feel right. Here are a few
+              things we keep at the heart of the Suvidha experience.
+            </p>
+          </div>
+        </Reveal>
+        <div className="approach-grid">
+          <Reveal delay={0.08}>
+            <div className="approach-item">
+              <span className="approach-icon">
+                <Wheat size={25} strokeWidth={1.4} />
+              </span>
+              <span className="approach-no">01</span>
+              <h3>Grain variety</h3>
+              <p>
+                Explore familiar favourites and traditional grain options for
+                the way your family likes to eat.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.16}>
+            <div className="approach-item">
+              <span className="approach-icon">
+                <HandHeart size={25} strokeWidth={1.4} />
+              </span>
+              <span className="approach-no">02</span>
+              <h3>Made for everyday</h3>
+              <p>
+                Atta belongs in the everyday rhythm of home cooking, from
+                morning rotis to shared dinners.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.24}>
+            <div className="approach-item">
+              <span className="approach-icon">
+                <Leaf size={25} strokeWidth={1.4} />
+              </span>
+              <span className="approach-no">03</span>
+              <h3>Choice with care</h3>
+              <p>
+                Clear product information helps you choose the atta variety that
+                suits your kitchen and preferences.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
-      <section className="grain-break"><Image src="/images/multigrain-atta.webp" alt="Suvidha Multigrain Atta product packaging and grains" fill sizes="100vw" /><div className="grain-break-shade" /><Reveal className="grain-break-content"><span className="grain-kicker">FROM THE GRAIN TO THE GATHERING</span><h2>For the meals<br />that <em>make a home.</em></h2><a href="#contact" className="button button-light">Find your atta <ArrowRight size={16} /></a></Reveal><div className="grain-break-index">SUVIDHA / EVERYDAY GOODNESS</div></section>
+      <section className="grain-break">
+        <Image
+          src="/images/multigrain-atta.webp"
+          alt="Suvidha Multigrain Atta product packaging and grains"
+          fill
+          sizes="100vw"
+        />
+        <div className="grain-break-shade" />
+        <Reveal className="grain-break-content">
+          <span className="grain-kicker">FROM THE GRAIN TO THE GATHERING</span>
+          <h2>
+            For the meals
+            <br />
+            that <em>make a home.</em>
+          </h2>
+          <a href="#contact" className="button button-light">
+            Find your atta <ArrowRight size={16} />
+          </a>
+        </Reveal>
+        <div className="grain-break-index">SUVIDHA / EVERYDAY GOODNESS</div>
+      </section>
 
-      <section className="faq section-pad" id="faq"><Reveal><div className="faq-intro"><div className="eyebrow"><span className="eyebrow-line" /> A FEW THINGS YOU MAY WONDER</div><h2>Good to <em>know.</em></h2><p>Have a question about our atta or placing an enquiry? Start here, or send us a message.</p><a href="#contact" className="text-link">Ask us directly <ArrowRight size={16} /></a></div></Reveal><div className="faq-list">{faqs.map((f, i) => <Reveal key={f.q} delay={i * .05}><div className={`faq-item ${faqOpen === i ? 'faq-active' : ''}`}><button className="faq-question" onClick={() => setFaqOpen(faqOpen === i ? null : i)} aria-expanded={faqOpen === i}><span className="faq-index">0{i + 1}</span><span>{f.q}</span><ChevronDown size={19} className="faq-chevron" /></button><AnimatePresence initial={false}>{faqOpen === i && <motion.div className="faq-answer-wrap" initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: .28 }}><p className="faq-answer">{f.a}</p></motion.div>}</AnimatePresence></div></Reveal>)}</div></section>
+      <section className="faq section-pad" id="faq">
+        <Reveal>
+          <div className="faq-intro">
+            <div className="eyebrow">
+              <span className="eyebrow-line" /> A FEW THINGS YOU MAY WONDER
+            </div>
+            <h2>
+              Good to <em>know.</em>
+            </h2>
+            <p>
+              Have a question about our atta or placing an enquiry? Start here,
+              or send us a message.
+            </p>
+            <a href="#contact" className="text-link">
+              Ask us directly <ArrowRight size={16} />
+            </a>
+          </div>
+        </Reveal>
+        <div className="faq-list">
+          {faqs.map((f, i) => (
+            <Reveal key={f.q} delay={i * 0.05}>
+              <div className={`faq-item ${faqOpen === i ? "faq-active" : ""}`}>
+                <button
+                  className="faq-question"
+                  onClick={() => setFaqOpen(faqOpen === i ? null : i)}
+                  aria-expanded={faqOpen === i}
+                >
+                  <span className="faq-index">0{i + 1}</span>
+                  <span>{f.q}</span>
+                  <ChevronDown size={19} className="faq-chevron" />
+                </button>
+                <AnimatePresence initial={false}>
+                  {faqOpen === i && (
+                    <motion.div
+                      className="faq-answer-wrap"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.28 }}
+                    >
+                      <p className="faq-answer">{f.a}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
 
-      <section className="contact" id="contact"><div className="contact-left"><Reveal><div className="eyebrow eyebrow-light"><span className="eyebrow-line" /> VISIT, CALL OR SEND AN ENQUIRY</div><h2>Let’s find the<br />right <em>atta</em><br />for your table.</h2><p>Product questions, pricing, pack sizes or bulk enquiries — send us a note and we’ll help you take the next step.</p><div className="contact-note"><span className="contact-note-icon"><MessageCircle size={20} /></span><span><b>Call or WhatsApp</b><a href="tel:+919319191305">+91 93191 91305</a></span></div>
-        <div className="contact-note"><span className="contact-note-icon"><MapPin size={20} /></span><span><b>Visit our store</b><small>Shop No. 24, 22, DDA Market, Akshardham Apartment, Sector 19, Dwarka, New Delhi 110075</small></span></div>
-        <div className="contact-note"><span className="contact-note-icon"><MessageCircle size={20} /></span><span><b>Email us</b><a href="mailto:SuvidhaAttaChakki@gmail.com">SuvidhaAttaChakki@gmail.com</a></span></div></Reveal></div><div className="contact-form-wrap"><form className="contact-form" onSubmit={submitEnquiry}><div className="form-heading"><span>YOUR ENQUIRY</span><span className="form-heading-star">✳</span></div><label htmlFor="name">Your name <span>*</span></label><input id="name" name="name" autoComplete="name" placeholder="Enter your name" required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} /><label htmlFor="phone">Phone number <span>*</span></label><input id="phone" name="phone" type="tel" autoComplete="tel" placeholder="Enter your phone number" required pattern="[+0-9 ()-]{7,20}" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} /><label htmlFor="interest">What are you enquiring about?</label><div className="select-wrap"><select id="interest" value={form.interest} onChange={e => setForm({ ...form, interest: e.target.value })}><option>Product enquiry</option><option>MP Sharbati Atta</option><option>Multigrain Atta</option><option>Khapli Wheat Atta</option><option>Millets Atta</option><option>Wholesale / bulk order</option><option>Retail partnership</option></select><ChevronDown size={17} /></div><label htmlFor="message">A little more detail <span className="optional">OPTIONAL</span></label><textarea id="message" rows={3} placeholder="Product, quantity, location or question..." value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} /><button className="button button-gold form-submit" type="submit">Send an enquiry <ArrowRight size={17} /></button>{submitted && <p className="form-status" role="status">{whatsappNumber ? 'Your WhatsApp enquiry has been opened. Send the message there to complete your enquiry.' : 'Almost there! Add your business WhatsApp number to NEXT_PUBLIC_WHATSAPP_NUMBER in .env.local to enable enquiry delivery.'}</p>}<p className="form-privacy">Your details are used only to help respond to this enquiry.</p></form></div></section>
+      <section className="contact" id="contact">
+        <div className="contact-left">
+          <Reveal>
+            <div className="eyebrow eyebrow-light">
+              <span className="eyebrow-line" /> VISIT, CALL OR SEND AN ENQUIRY
+            </div>
+            <h2>
+              Let’s find the
+              <br />
+              right <em>atta</em>
+              <br />
+              for your table.
+            </h2>
+            <p>
+              Product questions, pricing, pack sizes or bulk enquiries — send us
+              a note and we’ll help you take the next step.
+            </p>
+            <div className="contact-note">
+              <span className="contact-note-icon">
+                <MessageCircle size={20} />
+              </span>
+              <span>
+                <b>Call or WhatsApp</b>
+                <a href="tel:+919319191305">+91 93191 91305</a>
+              </span>
+            </div>
+            <div className="contact-note">
+              <span className="contact-note-icon">
+                <MapPin size={20} />
+              </span>
+              <span>
+                <b>Visit our store</b>
+                <small>
+                  Shop No. 24, 22, DDA Market, Akshardham Apartment, Sector 19,
+                  Dwarka, New Delhi 110075
+                </small>
+              </span>
+            </div>
+            <div className="contact-note">
+              <span className="contact-note-icon">
+                <MessageCircle size={20} />
+              </span>
+              <span>
+                <b>Email us</b>
+                <a href="mailto:SuvidhaAttaChakki@gmail.com">
+                  SuvidhaAttaChakki@gmail.com
+                </a>
+              </span>
+            </div>
+          </Reveal>
+        </div>
+        <div className="contact-form-wrap">
+          <form className="contact-form" onSubmit={submitEnquiry}>
+            <div className="form-heading">
+              <span>YOUR ENQUIRY</span>
+              <span className="form-heading-star">✳</span>
+            </div>
+            <label htmlFor="name">
+              Your name <span>*</span>
+            </label>
+            <input
+              id="name"
+              name="name"
+              autoComplete="name"
+              placeholder="Enter your name"
+              required
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+            />
+            <label htmlFor="phone">
+              Phone number <span>*</span>
+            </label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              autoComplete="tel"
+              placeholder="Enter your phone number"
+              required
+              pattern="[+0-9 ()-]{7,20}"
+              value={form.phone}
+              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+            />
+            <label htmlFor="interest">What are you enquiring about?</label>
+            <div className="select-wrap">
+              <select
+                id="interest"
+                value={form.interest}
+                onChange={(e) => setForm({ ...form, interest: e.target.value })}
+              >
+                <option>Product enquiry</option>
+                <option>MP Sharbati Atta</option>
+                <option>Multigrain Atta</option>
+                <option>Khapli Wheat Atta</option>
+                <option>Millets Atta</option>
+                <option>Wholesale / bulk order</option>
+                <option>Retail partnership</option>
+              </select>
+              <ChevronDown size={17} />
+            </div>
+            <label htmlFor="message">
+              A little more detail <span className="optional">OPTIONAL</span>
+            </label>
+            <textarea
+              id="message"
+              rows={3}
+              placeholder="Product, quantity, location or question..."
+              value={form.message}
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
+            />
+            <button className="button button-gold form-submit" type="submit">
+              Send an enquiry <ArrowRight size={17} />
+            </button>
+            {submitted && (
+              <p className="form-status" role="status">
+                {whatsappNumber
+                  ? "Your WhatsApp enquiry has been opened. Send the message there to complete your enquiry."
+                  : "Almost there! Add your business WhatsApp number to NEXT_PUBLIC_WHATSAPP_NUMBER in .env.local to enable enquiry delivery."}
+              </p>
+            )}
+            <p className="form-privacy">
+              Your details are used only to help respond to this enquiry.
+            </p>
+          </form>
+        </div>
+      </section>
 
-      <footer className="footer"><div className="footer-main"><a className="brand brand-footer" href="#home"><Image className="brand-logo brand-logo-footer" src="/images/suvidha-brand-logo.png" alt="Suvidha Atta Chakki logo" width={76} height={65} /></a><p>Serving quality since 2026.<br />Aas Food Products · New Delhi</p><a href="#home" className="back-top">BACK TO TOP <ArrowUpRightIcon /></a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Suvidha Atta Chakki. All rights reserved.</span><span>SHOP 24, 22, DDA MARKET, SECTOR 19, DWARKA, NEW DELHI</span><a href="#contact">PRODUCT & WHOLESALE ENQUIRIES</a></div></footer>
-      <a className="floating-contact" href="#contact" aria-label="Make an enquiry"><MessageCircle size={19} /><span>Enquire</span></a>
+      <footer className="footer">
+        <div className="footer-main">
+          <a className="brand brand-footer" href="#home">
+            <Image
+              className="brand-logo brand-logo-footer"
+              src="/images/suvidha-brand-logo.png"
+              alt="Suvidha Atta Chakki logo"
+              width={76}
+              height={65}
+            />
+          </a>
+          <p>
+            Serving quality since 2014.
+            <br />
+            Aas Food Products · New Delhi
+          </p>
+          <div className="footer-socials">
+            <a
+              href="https://www.instagram.com/suvidhaattachakki/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+                <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" />
+              </svg>
+            </a>
+            <a
+              href="https://www.facebook.com/share/1EYPf9FLo7/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M13.5 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.6 1.6-1.6h1.7V3.5c-.8-.1-1.6-.2-2.4-.2-2.5 0-4.2 1.5-4.2 4.3v2.3H7.4V13h2.8v8h3.3Z"
+                />
+              </svg>
+            </a>
+          </div>
+          <a href="#home" className="back-top">
+            BACK TO TOP <ArrowUpRightIcon />
+          </a>
+        </div>
+        <div className="footer-bottom">
+          <span>
+            © {new Date().getFullYear()} Suvidha Atta Chakki. All rights
+            reserved.
+          </span>
+          <span>SHOP 24, 22, DDA MARKET, SECTOR 19, DWARKA, NEW DELHI</span>
+          <a href="#contact">PRODUCT & WHOLESALE ENQUIRIES</a>
+        </div>
+      </footer>
+      <a
+        className="floating-contact"
+        href="#contact"
+        aria-label="Make an enquiry"
+      >
+        <MessageCircle size={19} />
+        <span>Enquire</span>
+      </a>
     </main>
   );
 }
-function ArrowUpRightIcon() { return <MoveUpRight size={16} strokeWidth={1.8} />; }
+function ArrowUpRightIcon() {
+  return <MoveUpRight size={16} strokeWidth={1.8} />;
+}
